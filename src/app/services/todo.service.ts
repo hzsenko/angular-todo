@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Todo } from './../interfaces/todo';
 import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -11,19 +11,6 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class TodoService {
 
   private todosUrl = 'api/todos';
-
-  private log(message: string) {
-    this.messageService.add(`TodoService: ${message}`);
-  }
-
-  private handleError<T> (operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-      this.log(`${operation} failed: ${error.message}`);
-
-      return of(result as T);
-    };
-  }
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -53,5 +40,32 @@ export class TodoService {
         tap(_ => this.log('Deleted todo')),
         catchError(this.handleError<Todo>('deletedHero'))
       );
+  }
+
+  searchTodos(term: string): Observable<Todo[]> {
+    if (!term.trim()) {
+      return of([]);
+    }
+
+    return this.http.get<Todo[]>(`${this.todosUrl}/?name=${term}`)
+      .pipe(
+        tap(x => x.length ?
+          this.log(`Found todos matching "${term}"`) :
+          this.log(`No todos matching "${term}"`)),
+          catchError(this.handleError<Todo[]>('searchTodos', []))
+      );
+  }
+
+  private log(message: string) {
+    this.messageService.add(`TodoService: ${message}`);
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      this.log(`${operation} failed: ${error.message}`);
+
+      return of(result as T);
+    };
   }
 }

@@ -17,6 +17,7 @@ import { TodoComponent } from './components/todo/todo.component';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { MessagesComponent } from './components/messages/messages.component';
+import { SearchTodosComponent } from './components/search-todos/search-todos.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { MessagesComponent } from './components/messages/messages.component';
     TodoListComponent,
     DialogComponent,
     MessagesComponent,
+    SearchTodosComponent,
   ],
   imports: [
     FormsModule,

@@ -1,0 +1,12 @@
+<div id="search-component">
+  <mat-form-field class="example-full-width">
+    <mat-label>Seach element</mat-label>
+    <input matInput placeholder="search" #searchBox (input)="search(searchBox.value)" />
+  </mat-form-field>
+
+  <ul class="search-result">
+    <li *ngFor="let todo of $todos | async">
+      {{todo.name}}
+    </li>
+  </ul>
+</div>

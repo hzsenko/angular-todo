@@ -1,5 +1,6 @@
 <div class="todo-list">
   <h2>My todos</h2>
+  <app-search-todos></app-search-todos>
   <ul class="todos" *ngIf="todos">
     <li *ngFor="let todo of todos">
       <app-todo [todo]="todo"
