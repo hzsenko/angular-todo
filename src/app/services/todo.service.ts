@@ -20,11 +20,11 @@ export class TodoService {
     return this.http.get<Todo[]>(this.todosUrl);
   }
 
-  addTodo (todo: Object): Observable<Todo> {
+  addTodo(todo: Todo): Observable<Todo> {
     return this.http.post<Todo>(this.todosUrl, todo, this.httpOptions);
   }
 
-  deleteTodo (todo: Todo | number): Observable<Todo> {
+  deleteTodo(todo: Todo | number): Observable<Todo> {
     const id = typeof todo === 'number' ? todo : todo.id;
     const url = `${this.todosUrl}/${id}`;
 

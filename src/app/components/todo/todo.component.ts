@@ -11,21 +11,17 @@ import { TodoService } from 'src/app/services/todo.service';
 })
 export class TodoComponent implements OnInit {
   @Input() todo: Todo;
-  @Output() onChanges = new EventEmitter<Todo>();
-  @Output() onUpdate = new EventEmitter<Todo>();
+  @Output() delete = new EventEmitter<Todo>();
+  @Output() update = new EventEmitter<Todo>();
 
   constructor(public dialog: MatDialog, public todoService: TodoService) { }
 
-  changeTodos(result: Todo) {
-    this.onChanges.emit(result);
+  closeTask(todo: Todo) {
+    this.updateTodos(todo);
   }
 
   updateTodos(result: Todo) {
-    this.onUpdate.emit(result);
-  }
-
-  closeTask(todo: Todo) {
-    this.updateTodos(todo);
+    this.update.emit(result);
   }
 
   openDeleteDialog(): void {
@@ -34,12 +30,14 @@ export class TodoComponent implements OnInit {
       data: this.todo
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if(result) {
-        this.changeTodos(result);
-      }
-      console.log('The dialog was closed', result);
+    dialogRef.afterClosed()
+      .subscribe(result => {
+        if (result) { this.changeTodos(result); }
     });
+  }
+
+  changeTodos(result: Todo) {
+    this.delete.emit(result);
   }
 
   ngOnInit(): void {

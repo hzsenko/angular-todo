@@ -1,23 +1,26 @@
 <div class="todo-list">
   <h2>My todos</h2>
-<ul class="todos" *ngIf="todos">
-  <li *ngFor="let todo of todos">
-    <app-todo [todo]="todo"
-      (onChanges)="onChanges($event)"
-      (onUpdate)=onUpdate($event)></app-todo>
-  </li>
-</ul>
+  <ul class="todos" *ngIf="todos">
+    <li *ngFor="let todo of todos">
+      <app-todo [todo]="todo"
+        (delete)="onChanges($event)"
+        (update)=onUpdate($event)></app-todo>
+    </li>
+  </ul>
 
-<div class="todo-add">
-  <h2>Add todo</h2>
-  <mat-form-field class="example-full-width">
-    <mat-label>Todo name</mat-label>
-    <input matInput placeholder="Add new todo" [(ngModel)]="name">
-  </mat-form-field>
-  <mat-form-field class="example-full-width">
-    <mat-label>Todo description</mat-label>
-    <textarea matInput placeholder="Todo description" [(ngModel)]="description"></textarea>
-  </mat-form-field>
-  <button mat-raised-button color="primary" (click)="addTodo(name, description)">Добавить</button>
-</div>
+  <div class="todo-add">
+    <h2>Add todo</h2>
+    <mat-form-field class="example-full-width">
+      <mat-label>Todo name</mat-label>
+      <input matInput placeholder="Add new todo"
+        [(ngModel)]="name">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Todo description</mat-label>
+      <textarea matInput placeholder="Todo description"
+        [(ngModel)]="description"></textarea>
+    </mat-form-field>
+    <button mat-raised-button color="primary"
+      (click)="addTodo(name, description)">Добавить</button>
+  </div>
 </div>

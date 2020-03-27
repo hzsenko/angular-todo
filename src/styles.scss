@@ -25,6 +25,14 @@ ul {
   background: #f7f7f7;
 }
 
+@media (max-width: 991px) {
+  .mat-card-header {
+    padding-right: 120px;
+  }
+}
+
+
+
 .mat-form-field {
   width: 100%;
 }

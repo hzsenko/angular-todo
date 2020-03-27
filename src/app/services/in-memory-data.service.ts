@@ -26,13 +26,13 @@ export class InMemoryDataService implements InMemoryDbService {
     {
       id: 3,
       name: 'Learn Angular',
-      description: 'Выучить Angular',
+      description: 'Учить Angular',
       done: false,
     },
     {
       id: 4,
       name: 'Bugfix',
-      description: 'Пофиксить баг',
+      description: 'Фиксить баги',
       done: false,
     }];
     return {todos};

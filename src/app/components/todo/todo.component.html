@@ -6,8 +6,12 @@
     <p>{{todo.description}}</p>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-raised-button color="primary" (click)="closeTask(todo)" *ngIf="!todo.done">Завершить</button>
-    <button mat-raised-button (click)="openDeleteDialog()">Удалить</button>
-    <div class="todo-status" *ngIf="todo.done">Завершена</div>
+    <button mat-raised-button color="primary"
+      (click)="closeTask(todo)"
+      *ngIf="!todo.done">Завершить</button>
+    <button mat-raised-button
+      (click)="openDeleteDialog()">Удалить</button>
+    <div class="todo-status"
+      *ngIf="todo.done">Завершена</div>
   </mat-card-actions>
 </mat-card>

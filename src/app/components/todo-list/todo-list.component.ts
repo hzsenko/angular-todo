@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Todo } from '../../interfaces/todo'
+import { Todo } from '../../interfaces/todo';
 import { TodoService } from 'src/app/services/todo.service';
 
 @Component({
@@ -16,18 +16,18 @@ export class TodoListComponent implements OnInit {
   constructor(private todoService: TodoService) { }
 
   getTodos(): void {
-    this.todoService.getTodos().subscribe(todos => this.todos = todos);
+    this.todoService.getTodos()
+      .subscribe(todos => this.todos = todos);
   }
 
   addTodo(name: string, description: string): void {
-    if (!name || !description) return;
+    if (!name || !description) { return; }
 
     name = name.trim();
     description = description.trim();
 
-    this.todoService.addTodo({name, description}).subscribe(todo => {
-      this.todos.push(todo);
-    });
+    this.todoService.addTodo({name, description } as Todo)
+      .subscribe(todo => this.todos.push(todo));
   }
 
   onUpdate(todo: Todo) {
