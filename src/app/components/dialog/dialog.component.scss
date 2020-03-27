@@ -1,0 +1,16 @@
+.delete-dialog {
+  h2 {
+    padding-bottom: 10px;
+    text-align: center;
+  }
+
+  p {
+    padding-bottom: 30px;
+  }
+
+  .buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+}
